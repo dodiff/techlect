@@ -1,0 +1,17 @@
+# local
+spring:
+  profiles: local
+  jpa:
+    open-in-view: false
+    show-sql: true
+    hibernate:
+      ddl-auto: create-drop
+  h2:
+    console:
+      enabled: true
+
+logging:
+  level:
+    io.zingoworks.techlect: DEBUG
+    org.springframework: INFO
+    org.hibernate.type.descriptor.sql.BasicBinder: TRACE
