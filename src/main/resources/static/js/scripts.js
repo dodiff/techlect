@@ -20,19 +20,6 @@ function getScrollTop() {
           || document.body).scrollTop;
 }
 
-function getArticleImage() {
-  const hash = Math.floor(Math.random() * Number.MAX_SAFE_INTEGER);
-  const image = new Image;
-  image.className = 'article-list__item__image article-list__item__image--loading';
-  image.src = 'http://api.adorable.io/avatars/250/' + hash;
-
-  image.onload = function() {
-    image.classList.remove('article-list__item__image--loading');
-  };
-
-  return image;
-}
-
 function getArticleData(data) {
   const author = data.author;
   const title = data.title;
@@ -56,7 +43,7 @@ function getArticlePage(page) {
   pageElement.className = 'article-list__page';
 
   const request = new XMLHttpRequest();
-  request.open('GET', 'http://localhost:8080/api/articles?page=' + page + '&size=12', true)
+  request.open('GET', 'http://localhost:8080/api/articles?page=' + encodeURI(page) + '&size=12', true)
   request.onreadystatechange = () => {
     if (request.readyState === 4) {
       if (request.status === 200) {
