@@ -1,13 +1,5 @@
-{{#articles}}
-  <div class="card card-1" onclick="window.open('{{link}}')" style="cursor: pointer">
-    <a href="#">
-      <div class="card-text">
-        <div class="card-meta">{{organization}}</div>
-        <h2 class="card-title">{{title}}</h2>
-        <h2 class="card-title">{{description}}</h2>
-        <h2 class="card-title">{{author}}</h2>
-        <h2 class="card-title">{{authoredOn}}</h2>
-      </div>
-    </a>
-  </div>
-{{/articles}}
+<div class="article-list" id="article-list"></div>
+<ul class="article-list__pagination article-list__pagination--inactive" id="article-list-pagination"></ul>
+<!-- Infinite Scroll + Pagination from https://codepen.io/timseverien/pen/XXYaZe -->
+
+

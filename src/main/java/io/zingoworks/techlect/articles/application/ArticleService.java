@@ -6,6 +6,9 @@ import io.zingoworks.techlect.articles.domain.ArticleRepository;
 import java.util.List;
 import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -21,6 +24,15 @@ public class ArticleService {
             .map(ArticleResponseDto::new)
             .collect(Collectors.toList())
             ;
+    }
+
+    public Page<ArticleResponseDto> findAll(Pageable pageable) {
+        Page<Article> articles = articleRepository.findAll(pageable);
+
+        return new PageImpl<>(articles.stream()
+            .map(ArticleResponseDto::new)
+            .collect(Collectors.toList())
+        );
     }
 
 }
