@@ -1,8 +1,13 @@
-<div class="starter-template">
-  {{#articles}}
-  <h1>{{title}}</h1>
-  <h3>{{description}}</h3>
-  <h3>{{link}}</h3>
-  <h3>{{meta}}</h3>
-  {{/articles}}
-</div>
+{{#articles}}
+  <div class="card card-1" onclick="window.open('{{link}}')" style="cursor: pointer">
+    <a href="#">
+      <div class="card-text">
+        <div class="card-meta">{{organization}}</div>
+        <h2 class="card-title">{{title}}</h2>
+        <h2 class="card-title">{{description}}</h2>
+        <h2 class="card-title">{{author}}</h2>
+        <h2 class="card-title">{{authoredOn}}</h2>
+      </div>
+    </a>
+  </div>
+{{/articles}}
