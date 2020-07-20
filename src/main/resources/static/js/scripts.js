@@ -20,20 +20,47 @@ function getScrollTop() {
           || document.body).scrollTop;
 }
 
-function getArticleData(data) {
-  const author = data.author;
-  const title = data.title;
-  const articleData = document.createElement('div');
-  articleData.appendChild(document.createTextNode(author));
-  articleData.appendChild(document.createTextNode(title));
-  return articleData;
+function createCard(data) {
+  const card = document.createElement('div');
+  card.className = 'card card-1';
+
+  const title = document.createElement('div');
+  title.className = 'card-title';
+  title.textContent = data.title;
+
+  const description = document.createElement('div');
+  description.className = 'card-description';
+  description.textContent = data.description;
+
+  const label = document.createElement('div');
+  label.className = 'card-label';
+
+  const authoredOn = document.createElement('span');
+  authoredOn.className = 'card-authoredOn'
+  authoredOn.textContent = data.authoredOn;
+  
+  const author = document.createElement('span');
+  author.className = 'card-author';
+  author.textContent = data.author;
+
+  label.appendChild(authoredOn);
+  label.appendChild(author);
+
+  card.appendChild(title);
+  card.appendChild(description);
+  card.appendChild(label);
+
+  card.onclick = function() {
+    window.open(data.link);
+  }
+  return card;
 }
 
 function getArticle(data) {
-  const articleData = getArticleData(data);
+  const card = createCard(data);
   const article = document.createElement('article');
-  article.className = 'card card-1';
-  article.appendChild(articleData);
+  // article.className = 'card card-1';
+  article.appendChild(card);
   return article;
 }
 
@@ -43,13 +70,12 @@ function getArticlePage(page) {
   pageElement.className = 'article-list__page';
 
   const request = new XMLHttpRequest();
-  request.open('GET', 'http://localhost:8080/api/articles?page=' + encodeURI(page) + '&size=12', true)
+  request.open('GET', '/api/articles?page=' + encodeURI(page) + '&size=12', true)
   request.onreadystatechange = () => {
     if (request.readyState === 4) {
       if (request.status === 200) {
         const articles = JSON.parse(request.responseText)
         for (const i of articles.content) {
-          console.log(i);
           pageElement.appendChild(getArticle(i));
         }
       } else {
@@ -84,7 +110,7 @@ function fetchPage(page) {
 
 function addPage(page) {
   fetchPage(page);
-  addPaginationPage(page);
+  // addPaginationPage(page);
 }
 
 const articleList = document.getElementById('article-list');
@@ -92,11 +118,11 @@ const articleListPagination = document.getElementById(
     'article-list-pagination');
 let page = 0;
 
-addPage(++page);
+addPage(page++);
 
 window.onscroll = function () {
   if (getScrollTop() < getDocumentHeight() - window.innerHeight) {
     return;
   }
-  addPage(++page);
+  addPage(page++);
 };
