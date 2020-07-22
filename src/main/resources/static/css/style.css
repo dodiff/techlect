@@ -6,6 +6,7 @@ body {
   background: #e2e1e0;
   text-align: center;
   font-family: 'Spoqa Han Sans', 'Sans-serif';
+  margin: 0;
 }
 
 .card {
@@ -16,8 +17,8 @@ body {
   width: 330px;
   height: 300px;
   cursor: pointer;
-  color: white;
-  background: #6f9ed2;
+  color: #000000;
+  background: #ececec;
 }
 
 .card-title {
@@ -42,7 +43,7 @@ body {
   align-items: center;
   position: absolute;
   bottom: 0;
-  background-color: dimgray;
+  background-color: #cecbcb;
   width: 100%;
   height: 15%;
   text-align: left;
@@ -57,13 +58,12 @@ body {
 }
 
 .card-1 {
-  border-radius: 10px;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
-  transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  transition: all 0.3s cubic-bezier(.25, .8, .25, 1);
 }
 
 .card-1:hover {
-  box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
 }
 
 /* based from https://codepen.io/timseverien/pen/XXYaZe */
@@ -93,7 +93,6 @@ a:active {
 }
 
 main {
-  margin: 0 auto;
   max-width: 100em;
   padding-top: 1.5em;
   padding-bottom: 1em;
@@ -186,8 +185,8 @@ article {
 .btn-round {
   margin: 0.4rem;
   font-weight: bold;
-  color: #fff;
-  background: #a1a1de;
+  color: #000000;
+  background: #ececec;
   padding: 6px 16px;
   border-radius: 15px;
   position: relative;
@@ -201,4 +200,18 @@ article {
   font-size: 60px;
   margin-top: 120px;
   margin-left: 50px;
+}
+
+footer {
+  background: #333333;
+  color: #ffffff;
+  height: 40px;
+  position: fixed;
+  bottom: 0;
+  transition: bottom 0.2s ease-in-out;
+  width: 100%;
+}
+
+.nav-down {
+  bottom: -40px;
 }

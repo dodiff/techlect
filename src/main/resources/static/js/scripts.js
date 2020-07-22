@@ -38,7 +38,7 @@ function createCard(data) {
   const authoredOn = document.createElement('span');
   authoredOn.className = 'card-authoredOn'
   authoredOn.textContent = data.authoredOn;
-  
+
   const author = document.createElement('span');
   author.className = 'card-author';
   author.textContent = data.author;
@@ -126,3 +126,54 @@ window.onscroll = function () {
   }
   addPage(page++);
 };
+
+// https://codepen.io/gstricklind/pen/yvtjh?js-preprocessor=babel
+// Hide Header on on scroll down
+var didScroll;
+var lastScrollTop = 0;
+var delta = 5;
+var navbarHeight = document.getElementsByTagName('footer')[0].clientHeight;
+
+window.addEventListener('scroll', function (event) {
+  didScroll = true;
+});
+
+// $(window).scroll(function(event){
+//   didScroll = true;
+// });
+
+setInterval(function() {
+  if (didScroll) {
+    hasScrolled();
+    didScroll = false;
+  }
+}, 250);
+
+function hasScrolled() {
+  var st = window.pageYOffset | document.body.scrollTop;
+
+  // Make sure they scroll more than delta
+  if(Math.abs(lastScrollTop - st) <= delta)
+    return;
+
+  const footer = document.getElementsByTagName('footer')[0];
+
+  // If they scrolled down and are past the navbar, add class .nav-up.
+  // This is necessary so you never see what is "behind" the navbar.
+  if (st > lastScrollTop && st > navbarHeight) {
+    // Scroll Down
+    footer.className = 'nav-up';
+  } else {
+    // Scroll Up
+    const documentHeight = Math.max(
+        document.body.scrollHeight, document.documentElement.scrollHeight,
+        document.body.offsetHeight, document.documentElement.offsetHeight,
+        document.body.clientHeight, document.documentElement.clientHeight
+    );
+    if(st + window.screen.height < documentHeight) {
+      footer.className = 'nav-down';
+    }
+  }
+
+  lastScrollTop = st;
+}
