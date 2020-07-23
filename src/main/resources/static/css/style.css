@@ -25,7 +25,7 @@ body {
 .card-title {
   font-size: 1.55em;
   text-align: left;
-  margin: 20px 25px 10px 25px;
+  margin: 25px;
   white-space: nowrap;
   overflow: hidden;
 }
@@ -33,11 +33,11 @@ body {
 .card-description {
   display: -webkit-box;
   -webkit-box-orient: vertical;
-  -webkit-line-clamp: 3;
+  -webkit-line-clamp: 2;
   overflow: hidden;
   text-overflow: ellipsis;
   text-align: left;
-  margin: 10px 25px 25px 25px;
+  margin: 25px;
   line-height: 1.7rem;
 }
 
