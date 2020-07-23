@@ -33,20 +33,4 @@ public class Article extends BaseTimeEntity {
 
     private LocalDate authoredOn;
 
-    public Article(Long id, String organization, String title, String description, String link,
-        String author, LocalDate authoredOn) {
-        this.id = id;
-        this.organization = organization;
-        this.title = title;
-        this.description = description;
-        this.link = link;
-        this.author = author;
-        this.authoredOn = authoredOn;
-    }
-
-    public Article(String organization, String title, String description, String link, String author,
-        LocalDate authoredOn) {
-        this(null, organization, title, description, link, author, authoredOn);
-    }
-
 }
