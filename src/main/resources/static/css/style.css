@@ -1,31 +1,31 @@
 /* https://spoqa.github.io/spoqa-han-sans/ko-KR/ */
 @import url(//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSans-kr.css);
+@import url(http://fonts.googleapis.com/earlyaccess/notosanskr.css);
 
 /* https://codepen.io/sdthornton/pen/wBZdXq */
 body {
-  background: #484950;
+  background: #54555a;
   text-align: center;
-  font-family: 'Spoqa Han Sans', 'Sans-serif';
+  font-family: 'Noto Sans KR', 'Spoqa Han Sans', 'Sans-serif';
   margin: 0;
 }
 
 .card {
-  border-radius: 2px;
+  border-radius: 5px;
   display: inline-block;
-  margin-bottom: 0.5rem;
+  margin-bottom: 1rem;
   position: relative;
   width: 62rem;
   height: 12rem;
   cursor: pointer;
   color: #000000;
-  background: #ececec;
+  background: #efefef;
 }
 
 .card-title {
-  font-size: 1.6em;
-  font-weight: bold;
+  font-size: 1.55em;
   text-align: left;
-  margin: 15px 15px 15px 15px;
+  margin: 20px 25px 10px 25px;
   white-space: nowrap;
   overflow: hidden;
 }
@@ -37,26 +37,30 @@ body {
   overflow: hidden;
   text-overflow: ellipsis;
   text-align: left;
-  margin: 13px 13px 13px 13px;
+  margin: 10px 25px 25px 25px;
+  line-height: 1.7rem;
 }
 
 .card-label {
+  border-radius: 5px;
   display: flex;
   align-items: center;
   position: absolute;
   bottom: 0;
-  background-color: #cecbcb;
+  background-color: #dedede;
+  color: #989898;
   width: 100%;
   height: 15%;
   text-align: left;
+  font-size: 0.9rem;
 }
 
 .card-author {
-  margin: 10px 10px 10px 10px;
+  /*margin: 25px;*/
 }
 
 .card-authoredOn {
-  margin: 10px 10px 10px 10px;
+  margin: 25px;
 }
 
 .card-1 {
@@ -69,13 +73,13 @@ body {
 }
 
 /* based from https://codepen.io/timseverien/pen/XXYaZe */
-body {
-  background-color: #f8f8f8;
-  color: #333;
-  counter-reset: page;
-  -webkit-font-smoothing: antialiased;
-  -moz-font-smoothing: grayscale;
-}
+/*body {*/
+/*  background-color: #f8f8f8;*/
+/*  color: #333;*/
+/*  counter-reset: page;*/
+/*  -webkit-font-smoothing: antialiased;*/
+/*  -moz-font-smoothing: grayscale;*/
+/*}*/
 
 h1, h2, h3, h4, h5, h6 {
   text-transform: uppercase;
@@ -194,9 +198,10 @@ article {
 
 .techlect {
   float: left;
-  font-size: 60px;
-  margin-top: 120px;
-  margin-left: 50px;
+  font-size: 3.6rem;
+  margin-top: 10rem;
+  margin-left: 28.5rem;
+  color: #54feff;
 }
 
 footer {
