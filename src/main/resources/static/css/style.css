@@ -19,15 +19,18 @@ body {
   height: 12rem;
   cursor: pointer;
   color: #000000;
-  background: #efefef;
+  background: #ffffff;
 }
 
 .card-title {
   font-size: 1.55em;
   text-align: left;
-  margin: 25px;
+  margin: 25px 25px 0 25px;
   white-space: nowrap;
   overflow: hidden;
+  border: none;
+  border-bottom: solid 0.1rem rgba(0, 0, 0, 0.25);
+  padding-bottom: 5px;
 }
 
 .card-description {
@@ -37,7 +40,7 @@ body {
   overflow: hidden;
   text-overflow: ellipsis;
   text-align: left;
-  margin: 25px;
+  margin: 20px 25px 25px 25px;
   line-height: 1.7rem;
 }
 
@@ -199,6 +202,7 @@ article {
 .techlect {
   float: left;
   font-size: 3.6rem;
+  font-weight: bold;
   margin-top: 10rem;
   margin-left: 28.5rem;
   color: #54feff;
