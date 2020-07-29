@@ -17,17 +17,8 @@ public class ArticleService {
 
     private final ArticleRepository articleRepository;
 
-    public List<ArticleResponseDto> findAll() {
-        List<Article> articles = articleRepository.findAll();
-
-        return articles.stream()
-            .map(ArticleResponseDto::new)
-            .collect(Collectors.toList())
-            ;
-    }
-
     public Page<ArticleResponseDto> findAll(Pageable pageable) {
-        Page<Article> articles = articleRepository.findAll(pageable);
+        Page<Article> articles = articleRepository.findAllByOrderByAuthoredOnDesc(pageable);
 
         return new PageImpl<>(articles.stream()
             .map(ArticleResponseDto::new)
