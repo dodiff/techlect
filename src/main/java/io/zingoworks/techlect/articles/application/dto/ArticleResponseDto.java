@@ -8,6 +8,7 @@ import lombok.Getter;
 @Getter
 public class ArticleResponseDto {
 
+    private final Long id;
     private final String organization;
     private final String title;
     private final String description;
@@ -17,6 +18,7 @@ public class ArticleResponseDto {
     private final String link;
 
     public ArticleResponseDto(Article entity) {
+        this.id = entity.getId();
         this.organization = entity.getOrganization();
         this.title = entity.getTitle();
         this.description = entity.getDescription();
