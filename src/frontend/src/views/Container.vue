@@ -16,6 +16,13 @@
         </v-list-item>
       </v-list-item-group>
     </v-list>
+
+    <v-pagination
+      v-model="pagination.page"
+      :length="pagination.totalPages"
+      :total-visible="7"
+      @input="onPageChange"
+    ></v-pagination>
   </main>
 </template>
 
@@ -25,11 +32,21 @@ import axios from "axios";
 export default {
   data: () => ({
     articles: [],
+    pagination: {
+      page: 1,
+      totalPages: "",
+    },
   }),
   created() {
-    axios
-      .get("/api/articles?page=1&size=10")
-      .then((res) => (this.articles = res.data.content));
+    axios.get("/api/articles?page=1").then((res) => {
+      this.articles = res.data.content;
+      this.pagination.totalPages = res.data.totalPages;
+    });
+  },
+  watch: {
+    "pagination.page": (newPage) => {
+      this.onPageChange(newPage);
+    },
   },
   methods: {
     popArticlePage: function(link, id) {
@@ -37,6 +54,11 @@ export default {
       axios
         .post("/api/articles/hits", { id: id })
         .then((res) => console.log(res));
+    },
+    onPageChange: function(page) {
+      axios
+        .get("/api/articles?page=" + page)
+        .then((res) => (this.articles = res.data.content));
     },
   },
 };
