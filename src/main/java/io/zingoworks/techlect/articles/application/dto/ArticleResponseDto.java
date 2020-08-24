@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import io.zingoworks.techlect.articles.domain.Article;
 import java.time.LocalDate;
 import lombok.Getter;
+import org.springframework.data.domain.Page;
 
 @Getter
 public class ArticleResponseDto {
@@ -25,6 +26,10 @@ public class ArticleResponseDto {
         this.author = entity.getAuthor();
         this.authoredOn = entity.getAuthoredOn();
         this.link = entity.getLink();
+    }
+
+    public static Page<ArticleResponseDto> of(Page<Article> entity) {
+        return entity.map(ArticleResponseDto::new);
     }
 
 }

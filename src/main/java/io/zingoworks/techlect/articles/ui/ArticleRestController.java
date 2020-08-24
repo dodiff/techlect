@@ -24,7 +24,6 @@ public class ArticleRestController {
 
     @PostMapping("/hits")
     public String incrementHits(Long id) {
-
         return "ok!";
     }
 
