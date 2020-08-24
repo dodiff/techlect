@@ -1,21 +1,39 @@
 <template>
   <main>
-    <v-list>
-      <v-list-item-group v-model="item" color="primary">
-        <v-list-item
-          v-for="article in articles"
-          :key="article.id"
-          :inactive="inactive"
-          @click="popArticlePage(article.link, article.id)"
-        >
-          <v-list-item-avatar v-html="article.organization">
-          </v-list-item-avatar>
-          <v-list-item-content>
-            <v-list-item-title v-html="article.title"></v-list-item-title>
-          </v-list-item-content>
-        </v-list-item>
-      </v-list-item-group>
-    </v-list>
+    <article>
+      <v-list>
+        <v-list-item-group v-model="item" color="primary">
+          <v-list-item
+            v-for="article in articles"
+            :key="article.id"
+            :inactive="inactive"
+            @click="popArticlePage(article.link, article.id)"
+          >
+            <v-list-item-content>
+              <v-list-item-title>
+                <v-badge
+                  color="blue"
+                  content="NEW"
+                  offset-x="-3"
+                  v-if="isRecentArticle(article.authoredOn)"
+                >
+                  <span class="article-title">{{ article.title }}</span>
+                </v-badge>
+                <span
+                  class="article-title"
+                  v-if="!isRecentArticle(article.authoredOn)"
+                >
+                  {{ article.title }}
+                </span>
+              </v-list-item-title>
+              <v-list-item-subtitle
+                v-html="article.authoredOn + ', ' + article.author"
+              ></v-list-item-subtitle>
+            </v-list-item-content>
+          </v-list-item>
+        </v-list-item-group>
+      </v-list>
+    </article>
 
     <v-pagination
       v-model="pagination.page"
@@ -60,12 +78,28 @@ export default {
         .get("/api/articles?page=" + page)
         .then((res) => (this.articles = res.data.content));
     },
+    isRecentArticle: function(authoredOn) {
+      const now = new Date();
+      const publishDate = new Date(authoredOn);
+
+      const dateDiff =
+        (now.getTime() - publishDate.getTime()) / (1000 * 60 * 60 * 24);
+      return dateDiff <= 7;
+    },
   },
 };
 </script>
 
 <style scoped>
 main {
-  margin: 75px;
+  margin: 30px;
+}
+
+article {
+  margin: 0 100px 15px 100px;
+}
+
+.article-title {
+  font-size: 1.6rem;
 }
 </style>

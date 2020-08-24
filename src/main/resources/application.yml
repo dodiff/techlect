@@ -11,7 +11,7 @@ spring:
     web:
       pageable:
         one-indexed-parameters: true
-        default-page-size: 10
+        default-page-size: 9
 
 logging:
   level:
