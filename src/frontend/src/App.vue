@@ -6,7 +6,7 @@
           alt="zingoworks Logo"
           class="shrink mr-2"
           contain
-          src="./assets/z.png"
+          src="./assets/logo.png"
           transition="scale-transition"
           width="40"
         />

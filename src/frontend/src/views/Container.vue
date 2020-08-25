@@ -11,20 +11,14 @@
           >
             <v-list-item-content>
               <v-list-item-title>
+                <span class="article-title">{{ article.title }}</span>
                 <v-badge
                   color="blue"
-                  content="NEW"
+                  content="N"
                   offset-x="-3"
+                  offset-y="-4"
                   v-if="isRecentArticle(article.authoredOn)"
-                >
-                  <span class="article-title">{{ article.title }}</span>
-                </v-badge>
-                <span
-                  class="article-title"
-                  v-if="!isRecentArticle(article.authoredOn)"
-                >
-                  {{ article.title }}
-                </span>
+                />
               </v-list-item-title>
               <v-list-item-subtitle
                 v-html="article.authoredOn + ', ' + article.author"
@@ -96,10 +90,18 @@ main {
 }
 
 article {
-  margin: 0 100px 15px 100px;
+  margin: 0 200px 15px 200px;
 }
 
 .article-title {
   font-size: 1.6rem;
+}
+
+.v-badge__badge {
+  position: absolute;
+}
+
+.v-list-item__content {
+  padding: 16px 0;
 }
 </style>
