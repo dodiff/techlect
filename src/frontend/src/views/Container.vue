@@ -2,11 +2,10 @@
   <main>
     <article>
       <v-list>
-        <v-list-item-group v-model="item" color="primary">
+        <v-list-item-group color="primary">
           <v-list-item
             v-for="article in articles"
             :key="article.id"
-            :inactive="inactive"
             @click="popArticlePage(article.link, article.id)"
           >
             <v-list-item-content>
@@ -20,9 +19,11 @@
                   v-if="isRecentArticle(article.authoredOn)"
                 />
               </v-list-item-title>
-              <v-list-item-subtitle
-                v-html="article.authoredOn + ', ' + article.author"
-              ></v-list-item-subtitle>
+              <v-list-item-subtitle>
+                <span class="meta-tag organization">{{ article.organization }}</span>
+                <span class="meta-tag">{{ article.authoredOn }}</span>
+                <span class="meta-tag">{{ article.author }}</span>
+              </v-list-item-subtitle>
             </v-list-item-content>
           </v-list-item>
         </v-list-item-group>
@@ -46,7 +47,7 @@ export default {
     articles: [],
     pagination: {
       page: 1,
-      totalPages: "",
+      totalPages: null,
     },
   }),
   created() {
@@ -80,6 +81,11 @@ export default {
         (now.getTime() - publishDate.getTime()) / (1000 * 60 * 60 * 24);
       return dateDiff <= 7;
     },
+    getOrganizationLogo: function(organization) {
+      console.log(organization);
+
+      return "@/assets/logos/kakao.png";
+    },
   },
 };
 </script>
@@ -103,5 +109,13 @@ article {
 
 .v-list-item__content {
   padding: 16px 0;
+}
+
+.meta-tag {
+  margin-right: 7px;
+}
+
+.organization {
+  font-size: 1.1rem;
 }
 </style>
