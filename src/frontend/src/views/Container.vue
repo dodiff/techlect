@@ -65,6 +65,7 @@ export default {
   watch: {
     "pagination.page": (newPage) => {
       this.onPageChange(newPage);
+      console.log(this)
     },
   },
   methods: {
