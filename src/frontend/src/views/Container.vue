@@ -20,7 +20,13 @@
                 />
               </v-list-item-title>
               <v-list-item-subtitle>
-                <span class="meta-tag organization">{{ article.organization }}</span>
+                <img
+                  class="organization-logo"
+                  :src="article.organizationFaviconPath"
+                />
+                <span class="meta-tag organization">
+                  {{ article.organizationName }}
+                </span>
                 <span class="meta-tag">{{ article.authoredOn }}</span>
                 <span class="meta-tag">{{ article.author }}</span>
               </v-list-item-subtitle>
@@ -117,5 +123,11 @@ article {
 
 .organization {
   font-size: 1.1rem;
+}
+
+.organization-logo {
+  vertical-align: bottom;
+  height: 1.3rem;
+  border-radius: 6px;
 }
 </style>

@@ -10,7 +10,8 @@ import org.springframework.data.domain.Page;
 public class ArticleResponseDto {
 
     private final Long id;
-    private final String organization;
+    private final String organizationName;
+    private final String organizationFaviconPath;
     private final String title;
     private final String description;
     private final String author;
@@ -20,7 +21,8 @@ public class ArticleResponseDto {
 
     public ArticleResponseDto(Article entity) {
         this.id = entity.getId();
-        this.organization = entity.getOrganization();
+        this.organizationName = entity.getOrganization().getTitle();
+        this.organizationFaviconPath = entity.getOrganization().getFaviconPath();
         this.title = entity.getTitle();
         this.description = entity.getDescription();
         this.author = entity.getAuthor();
