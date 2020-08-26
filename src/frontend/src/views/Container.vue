@@ -62,12 +62,6 @@ export default {
       this.pagination.totalPages = res.data.totalPages;
     });
   },
-  watch: {
-    "pagination.page": (newPage) => {
-      this.onPageChange(newPage);
-      console.log(this)
-    },
-  },
   methods: {
     popArticlePage: function(link, id) {
       window.open(link, "_blank");
@@ -87,11 +81,6 @@ export default {
       const dateDiff =
         (now.getTime() - publishDate.getTime()) / (1000 * 60 * 60 * 24);
       return dateDiff <= 7;
-    },
-    getOrganizationLogo: function(organization) {
-      console.log(organization);
-
-      return "@/assets/logos/kakao.png";
     },
   },
 };
@@ -116,6 +105,10 @@ article {
 
 .v-list-item__content {
   padding: 16px 0;
+}
+
+.v-list-item__subtitle {
+  margin-top: 5px;
 }
 
 .meta-tag {
