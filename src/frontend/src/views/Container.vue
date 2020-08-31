@@ -1,6 +1,16 @@
 <template>
   <main>
     <article>
+      <div class="filters">
+        <v-chip
+          class="ma-2"
+          v-for="organization in organizations"
+          :key="organization.key"
+        >
+          {{ organization.value }}
+        </v-chip>
+      </div>
+
       <v-list>
         <v-list-item-group color="primary">
           <v-list-item
@@ -51,6 +61,7 @@ import axios from "axios";
 export default {
   data: () => ({
     articles: [],
+    organizations: [],
     pagination: {
       page: 1,
       totalPages: null,
@@ -60,6 +71,10 @@ export default {
     axios.get("/api/articles?page=1").then((res) => {
       this.articles = res.data.content;
       this.pagination.totalPages = res.data.totalPages;
+    });
+
+    axios.get("/api/articles/organizations").then((res) => {
+      this.organizations = res.data;
     });
   },
   methods: {
@@ -123,5 +138,15 @@ article {
   vertical-align: bottom;
   height: 1.3rem;
   border-radius: 6px;
+}
+
+.v-chip.complete {
+  background: #3cd1c2;
+}
+.v-chip.ongoing {
+  background: #ffaa2c;
+}
+.v-chip.overdue {
+  background: #f83e70;
 }
 </style>
