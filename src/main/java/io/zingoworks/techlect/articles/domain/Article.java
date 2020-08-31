@@ -2,7 +2,6 @@ package io.zingoworks.techlect.articles.domain;
 
 import io.zingoworks.techlect.common.BaseTimeEntity;
 import java.time.LocalDate;
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -30,5 +29,6 @@ public class Article extends BaseTimeEntity {
     private String link;
     private String author;
     private LocalDate authoredOn;
+    private Long hits;
 
 }
