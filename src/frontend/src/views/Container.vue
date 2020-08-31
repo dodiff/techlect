@@ -1,16 +1,6 @@
 <template>
-  <main>
+  <main v-if="exists">
     <article>
-      <div class="filters">
-        <v-chip
-          class="ma-2"
-          v-for="organization in organizations"
-          :key="organization.key"
-        >
-          {{ organization.value }}
-        </v-chip>
-      </div>
-
       <v-list>
         <v-list-item-group color="primary">
           <v-list-item
@@ -61,27 +51,24 @@ import axios from "axios";
 export default {
   data: () => ({
     articles: [],
-    organizations: [],
     pagination: {
       page: 1,
       totalPages: null,
     },
+    exists: null,
   }),
   created() {
     axios.get("/api/articles?page=1").then((res) => {
       this.articles = res.data.content;
       this.pagination.totalPages = res.data.totalPages;
-    });
-
-    axios.get("/api/articles/organizations").then((res) => {
-      this.organizations = res.data;
+      this.exists = (this.articles.length > 0);
     });
   },
   methods: {
     popArticlePage: function(link, id) {
       window.open(link, "_blank");
       axios
-        .post("/api/articles/hits", { id: id })
+        .post(`/api/articles/hits/${id}`)
         .then((res) => console.log(res));
     },
     onPageChange: function(page) {
@@ -148,5 +135,46 @@ article {
 }
 .v-chip.overdue {
   background: #f83e70;
+}
+
+/* 스마트폰 가로+세로 */
+@media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
+}
+
+/* 스마트폰 가로 */
+@media only screen and (min-width: 321px) {
+}
+
+/* 스마트폰 세로 */
+@media only screen and (max-width: 320px) {
+}
+
+/* iPhone4와 같은 높은 크기 세로 */
+@media only screen and (-webkit-min-device-pixel-ratio: 1.5),
+  only screen and (min-device-pixel-ratio: 1.5) {
+}
+
+/* iPhone4와 같은 높은 해상도 가로 */
+@media only screen and (min-width: 640px) {
+}
+
+/* iPad 가로+세로 */
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+}
+
+/* iPad 가로 */
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape) {
+}
+
+/* iPad 세로 */
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: portrait) {
+}
+
+/* 데스크탑 브라우저 가로 */
+@media only screen and (min-width: 1224px) {
+}
+
+/* 큰 모니터 */
+@media only screen and (min-width: 1824px) {
 }
 </style>
